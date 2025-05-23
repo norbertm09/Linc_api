@@ -1,20 +1,20 @@
-from fastapi import FastAPI
-from routers import payment
-from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routers import payment
+
+app = FastAPI(title="API Paiement Visa & Mastercard")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ou ["https://votre-site.com"]
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app = FastAPI(title="API Maître Paiement – Visa & Mastercard")
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return {"status": "ok"}
 
 app.include_router(payment.router, prefix="/pay", tags=["Paiement"])
-
-@app.get("/")
-def root():
-    return {"message": "Bienvenue sur l'API Paiement intégrée Visa & Mastercard"}
