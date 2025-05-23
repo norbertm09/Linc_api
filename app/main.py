@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import payment
+from routers import send_visa_router
+app.include_router(send_visa_router.router)
 
 app = FastAPI(title="API Paiement Visa & Mastercard")
 
