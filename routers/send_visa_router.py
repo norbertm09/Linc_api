@@ -51,7 +51,8 @@ def send_visa_payment(transfer: VisaTransfer):
         res = requests.post(
             "https://sandbox.api.visa.com/visadirect/fundstransfer/v1/pushfundstransactions",
             json=payload,
-            cert=(os.getenv("VISA_CERT"), os.getenv("VISA_KEY")),
+            #cert=(os.getenv("VISA_CERT"), os.getenv("VISA_KEY")),
+            cert=(cert_file, key_file),
             auth=(os.getenv("VISA_USER"), os.getenv("VISA_PASS"))
         )
         return res.json()
