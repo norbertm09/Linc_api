@@ -25,6 +25,8 @@ def save_cert(varname):
     return file.name
 cert_file = save_cert("VISA_CERT_B64")
 key_file = save_cert("VISA_KEY_B64")
+print("CERT FILE:", cert_path)
+print("KEY FILE :", key_path)
 # 🔐 Endpoint sécurisé vers Visa Direct
 @router.post("/send-visa")
 def send_visa_payment(transfer: VisaTransfer):
